@@ -1,3 +1,4 @@
+const { request, response } = require("express");
 const express = require("express");
 const uuid = require("uuid");
 
@@ -23,12 +24,6 @@ const checkUserId = (request, response, next) => {
 	next();
 };
 
-//ROTA DE -->> GET <<-- PARA PEGAR INFORMAÇÕES
-
-app.get("/users", (request, response) => {
-	return response.json(users);
-});
-
 //ROTA DE -->> POST <<-- PARA CRIAR
 
 app.post("/users", (request, response) => {
@@ -50,6 +45,12 @@ app.put("/users/:id", checkUserId, (request, response) => {
 	users[index] = updatedUser;
 
 	return response.json(updatedUser);
+});
+
+//ROTA DE -->> GET <<-- PARA PEGAR INFORMAÇÕES
+
+app.get("/users", (request, response) => {
+	return response.json(users);
 });
 
 //ROTA DE -->> DELETE <<-- PARA DELETAR USER
